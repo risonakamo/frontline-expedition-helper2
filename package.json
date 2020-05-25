@@ -4,6 +4,7 @@
   "description": "frontline expedition helper 2",
   "scripts": {
     "build": "webpack",
+    "watch":"webpack --watch",
     "server":"node testserver"
   },
   "devDependencies": {
