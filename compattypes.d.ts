@@ -1,4 +1,6 @@
 declare const ReactDOM:any;
+declare const Papa:any;
+declare const _:any;
 
 declare namespace React
 {
