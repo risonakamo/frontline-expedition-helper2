@@ -1,8 +1,21 @@
+import ExpeditionTable from "./components/exptable/exptable";
+
 import "./index.less";
+
+class IndexMain extends React.Component
+{
+  render()
+  {
+    return <>
+      <ExpeditionTable/>
+    </>;
+  }
+}
 
 async function main()
 {
     console.log(await getExpData());
+    ReactDOM.render(<IndexMain/>,document.querySelector(".main"));
 }
 
 // get expedition data from data file
