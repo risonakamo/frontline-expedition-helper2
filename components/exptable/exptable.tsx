@@ -1,3 +1,5 @@
+import ExpeditionRow from "../exprow/exprow";
+
 import "./exptable.less";
 
 interface ExpeditionTableProps
@@ -27,7 +29,9 @@ export default class ExpeditionTable extends React.Component
       </thead>
 
       <tbody>
-
+        {_.map(this.props.data,(x:ExpeditionData)=>{
+          return <ExpeditionRow data={x}/>;
+        })}
       </tbody>
     </table>;
   }

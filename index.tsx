@@ -4,17 +4,36 @@ import "./index.less";
 
 class IndexMain extends React.Component
 {
+  state:{
+    data:ExpeditionData[]
+  }
+
+  constructor(props:any)
+  {
+    super(props);
+
+    this.state={
+      data:[]
+    };
+  }
+
+  async componentDidMount()
+  {
+    this.setState({
+      data:await getExpData()
+    });
+  }
+
   render()
   {
     return <>
-      <ExpeditionTable/>
+      <ExpeditionTable data={this.state.data}/>
     </>;
   }
 }
 
-async function main()
+function main()
 {
-    console.log(await getExpData());
     ReactDOM.render(<IndexMain/>,document.querySelector(".main"));
 }
 
