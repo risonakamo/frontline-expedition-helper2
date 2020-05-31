@@ -1,4 +1,7 @@
 
+.expedition-table tr {
+  line-height: 14px;
+}
 .expedition-table td {
   width: 70px;
 }

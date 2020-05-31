@@ -64,16 +64,16 @@ function fixRawExpeditionData(data:RawExpeditionData[]):ExpeditionData[]
     return _.map(data,(x:RawExpeditionData):ExpeditionData=>{
         var expdata:ExpeditionData={
             name:x.name,
-            gas:parseFloat(x.gas),
-            ammo:parseFloat(x.ammo),
-            mre:parseFloat(x.mre),
-            parts:parseFloat(x.parts),
-            doll:parseFloat(x.doll),
-            equip:parseFloat(x.equip)
+            gas:_.round(parseFloat(x.gas),2),
+            ammo:_.round(parseFloat(x.ammo),2),
+            mre:_.round(parseFloat(x.mre),2),
+            parts:_.round(parseFloat(x.parts),2),
+            doll:_.round(parseFloat(x.doll),2),
+            equip:_.round(parseFloat(x.equip),2)
         };
 
-        expdata.total=expdata.gas+expdata.ammo+expdata.mre
-            +expdata.parts+expdata.doll+expdata.equip;
+        expdata.total=_.round(expdata.gas+expdata.ammo+expdata.mre
+            +expdata.parts+expdata.doll+expdata.equip,2);
 
         return expdata;
     });

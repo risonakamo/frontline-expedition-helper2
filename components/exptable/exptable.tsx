@@ -30,7 +30,7 @@ export default class ExpeditionTable extends React.Component
 
       <tbody>
         {_.map(this.props.data,(x:ExpeditionData)=>{
-          return <ExpeditionRow data={x}/>;
+          return <ExpeditionRow data={x} key={x.name}/>;
         })}
       </tbody>
     </table>;

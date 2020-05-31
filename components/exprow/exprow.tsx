@@ -12,7 +12,7 @@ export default class ExpeditionRow extends React.PureComponent
 
   render()
   {
-    return <tr>
+    return <tr className="expedition-row">
       <td>{this.props.data.name}</td>
       <td>{this.props.data.gas}</td>
       <td>{this.props.data.ammo}</td>
