@@ -27,6 +27,48 @@ export default class CurrentExpeditions extends React.PureComponent
     };
   }
 
+  componentDidMount():void
+  {
+    this.keyControl();
+  }
+
+  // key control initialisation
+  keyControl():void
+  {
+    document.addEventListener("keydown",(e:KeyboardEvent)=>{
+      switch (e.key)
+      {
+        case "ArrowDown":
+        this.navigate(1);
+        break;
+
+        case "ArrowUp":
+        this.navigate(-1);
+        break;
+      }
+    });
+  }
+
+  // move selection cursor, positive is down, negative is up. wraps when hitting the top or bottom
+  navigate(change:number):void
+  {
+    var newselected:number=this.state.selected+change;
+
+    if (newselected>=this.props.currentExpeditions.length)
+    {
+      newselected=0;
+    }
+
+    else if (newselected<0)
+    {
+      newselected=this.props.currentExpeditions.length-1;
+    }
+
+    this.setState({
+      selected:newselected
+    });
+  }
+
   render()
   {
     return <table className="current-expeditions">
