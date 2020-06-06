@@ -52,20 +52,8 @@ export default class CurrentExpeditions extends React.PureComponent
   // move selection cursor, positive is down, negative is up. wraps when hitting the top or bottom
   navigate(change:number):void
   {
-    var newselected:number=this.state.selected+change;
-
-    if (newselected>=this.props.currentExpeditions.length)
-    {
-      newselected=0;
-    }
-
-    else if (newselected<0)
-    {
-      newselected=this.props.currentExpeditions.length-1;
-    }
-
     this.setState({
-      selected:newselected
+      selected:wrapClamp(this.state.selected+change,0,this.props.currentExpeditions.length-1)
     });
   }
 
@@ -79,4 +67,21 @@ export default class CurrentExpeditions extends React.PureComponent
       </tbody>
     </table>;
   }
+}
+
+// wrap clamps an input to a min and a max. if the number is over the max, wraps to the min,
+// or wraps to the max if under the min. both INCLUSIVE (so equal to max will NOT wrap)
+export function wrapClamp(input:number,min:number,max:number):number
+{
+  if (input>max)
+  {
+    return min;
+  }
+
+  else if (input<min)
+  {
+    return max;
+  }
+
+  return input;
 }
