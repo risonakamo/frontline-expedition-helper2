@@ -2,17 +2,20 @@ import "./exprow.less";
 
 interface ExpeditionRowProps
 {
-  data:ExpeditionData
+  data:ExpeditionData //data of the row
+  selected:boolean //row is in a selected state
 }
 
-/* ExpeditionRow(ExpeditionData data) */
+/* ExpeditionRow(ExpeditionData data, bool selected) */
 export default class ExpeditionRow extends React.PureComponent
 {
   props:ExpeditionRowProps
 
   render()
   {
-    return <tr className="expedition-row">
+    var selectedClass=this.props.selected?"selected":"";
+
+    return <tr className={`expedition-row ${selectedClass}`}>
       <td>{this.props.data.name}</td>
       <td>{this.props.data.gas}</td>
       <td>{this.props.data.ammo}</td>
