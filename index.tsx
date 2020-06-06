@@ -1,4 +1,5 @@
 import ExpeditionTable from "./components/exptable/exptable";
+import CurrentExpeditions from "./components/currentexp/currentexp";
 
 import "./index.less";
 
@@ -6,6 +7,7 @@ class IndexMain extends React.Component
 {
   state:{
     data:ExpeditionData[]
+    currentExpeditions:ExpeditionData[]
   }
 
   constructor(props:any)
@@ -13,7 +15,8 @@ class IndexMain extends React.Component
     super(props);
 
     this.state={
-      data:[]
+      data:[],
+      currentExpeditions:[]
     };
   }
 
@@ -21,6 +24,20 @@ class IndexMain extends React.Component
   {
     this.setState({
       data:await getExpData()
+    },this.testSetCurrent);
+  }
+
+  // test function, set the current expeditions to some of the data
+  testSetCurrent()
+  {
+    console.log("test set current");
+    this.setState({
+      currentExpeditions:[
+        this.state.data[0],
+        this.state.data[2],
+        this.state.data[4],
+        this.state.data[5]
+      ]
     });
   }
 
@@ -28,6 +45,7 @@ class IndexMain extends React.Component
   {
     return <>
       <ExpeditionTable data={this.state.data}/>
+      <CurrentExpeditions currentExpeditions={this.state.currentExpeditions}/>
     </>;
   }
 }
