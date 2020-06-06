@@ -1,10 +1,14 @@
-
-.expedition-table tr {
+.expedition-row {
   line-height: 14px;
 }
-.expedition-table td {
+.expedition-row td {
   width: 70px;
 }
+
+.expedition-table {
+  margin-bottom: 40px;
+}
+
 
 @charset "UTF-8";
 body {

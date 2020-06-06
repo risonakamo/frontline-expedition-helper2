@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/currentexp/currentexp.less":
+/*!***********************************************!*\
+  !*** ./components/currentexp/currentexp.less ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./components/currentexp/currentexp.less?");
+
+/***/ }),
+
 /***/ "./components/currentexp/currentexp.tsx":
 /*!**********************************************!*\
   !*** ./components/currentexp/currentexp.tsx ***!
@@ -94,7 +105,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return CurrentExpeditions; });\n/* harmony import */ var _exprow_exprow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../exprow/exprow */ \"./components/exprow/exprow.tsx\");\n\n\n/* CurrentExpeditions(ExpeditionData[] currentExpeditions) */\nclass CurrentExpeditions extends React.PureComponent {\n  render() {\n    return /*#__PURE__*/React.createElement(\"table\", {\n      className: \"current-expeditions\"\n    }, /*#__PURE__*/React.createElement(\"tbody\", null, _.map(this.props.currentExpeditions, x => {\n      return /*#__PURE__*/React.createElement(_exprow_exprow__WEBPACK_IMPORTED_MODULE_0__[\"default\"], {\n        data: x,\n        key: x.name\n      });\n    })));\n  }\n\n}\n\n//# sourceURL=webpack:///./components/currentexp/currentexp.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return CurrentExpeditions; });\n/* harmony import */ var _exprow_exprow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../exprow/exprow */ \"./components/exprow/exprow.tsx\");\n/* harmony import */ var _currentexp_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./currentexp.less */ \"./components/currentexp/currentexp.less\");\n/* harmony import */ var _currentexp_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_currentexp_less__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n/* CurrentExpeditions(ExpeditionData[] currentExpeditions) */\nclass CurrentExpeditions extends React.PureComponent {\n  render() {\n    return /*#__PURE__*/React.createElement(\"table\", {\n      className: \"current-expeditions\"\n    }, /*#__PURE__*/React.createElement(\"tbody\", null, _.map(this.props.currentExpeditions, x => {\n      return /*#__PURE__*/React.createElement(_exprow_exprow__WEBPACK_IMPORTED_MODULE_0__[\"default\"], {\n        data: x,\n        key: x.name\n      });\n    })));\n  }\n\n}\n\n//# sourceURL=webpack:///./components/currentexp/currentexp.tsx?");
 
 /***/ }),
 

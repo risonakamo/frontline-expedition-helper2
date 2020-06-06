@@ -1,5 +1,7 @@
 import ExpeditionRow from "../exprow/exprow";
 
+import "./currentexp.less";
+
 interface CurrentExpeditionsProps
 {
   currentExpeditions:ExpeditionData[] //array of current expeditions, should be 4
