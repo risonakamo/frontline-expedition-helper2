@@ -11,6 +11,7 @@ interface ExpeditionTableProps
 interface ExpeditionTableState
 {
   selected:number //current cursor selected row
+  selectEnabled:boolean //in a selection mode
 }
 
 /* ExpeditionTable(ExpeditionData[] data) */
@@ -24,7 +25,8 @@ export default class ExpeditionTable extends React.Component
     super(props);
 
     this.state={
-      selected:0
+      selected:-1,
+      selectEnabled:false
     };
   }
 
@@ -37,6 +39,11 @@ export default class ExpeditionTable extends React.Component
   keyControl():void
   {
     document.addEventListener("keydown",(e:KeyboardEvent)=>{
+      if (!this.state.selectEnabled)
+      {
+        return;
+      }
+
       switch (e.key)
       {
         case "ArrowDown":

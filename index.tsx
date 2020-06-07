@@ -20,7 +20,7 @@ class IndexMain extends React.Component
     };
   }
 
-  async componentDidMount()
+  async componentDidMount():Promise<void>
   {
     this.setState({
       data:await getExpData()
@@ -28,7 +28,7 @@ class IndexMain extends React.Component
   }
 
   // test function, set the current expeditions to some of the data
-  testSetCurrent()
+  testSetCurrent():void
   {
     console.log("test set current");
     this.setState({
@@ -41,11 +41,16 @@ class IndexMain extends React.Component
     });
   }
 
+  currentExpeditionSelect(selected:string):void
+  {
+    console.log(selected);
+  }
+
   render()
   {
     return <>
       <ExpeditionTable data={this.state.data}/>
-      <CurrentExpeditions currentExpeditions={this.state.currentExpeditions}/>
+      <CurrentExpeditions currentExpeditions={this.state.currentExpeditions} selected={this.currentExpeditionSelect}/>
     </>;
   }
 }
