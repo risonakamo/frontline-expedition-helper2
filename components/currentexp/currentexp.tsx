@@ -77,9 +77,22 @@ class CurrentExpeditions extends React.PureComponent
     this.props.selected(this.props.currentExpeditions[this.state.selected].name);
 
     toggleCurrentExpSelect();
-    this.setState({
-      selected:-1
-    });
+  }
+
+  // resolve a row's select state number based on certain things
+  resolveRowSelectState(index:number):number
+  {
+    if (index==this.state.selected)
+    {
+      if (!this.props.selectEnabled)
+      {
+        return 2;
+      }
+
+      return 1;
+    }
+
+    return 0;
   }
 
   render()
@@ -87,9 +100,8 @@ class CurrentExpeditions extends React.PureComponent
     return <table className="current-expeditions">
       <tbody>
         {_.map(this.props.currentExpeditions,(x:ExpeditionData,i:number)=>{
-          var selected=i==this.state.selected?1:0;
-
-          return <ExpeditionRow data={x} key={x.name} selected={selected}/>;
+          return <ExpeditionRow data={x} key={x.name}
+            selected={this.resolveRowSelectState(i)}/>;
         })}
       </tbody>
     </table>;
