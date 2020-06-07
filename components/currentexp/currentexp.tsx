@@ -62,7 +62,9 @@ export default class CurrentExpeditions extends React.PureComponent
     return <table className="current-expeditions">
       <tbody>
         {_.map(this.props.currentExpeditions,(x:ExpeditionData,i:number)=>{
-          return <ExpeditionRow data={x} key={x.name} selected={i==this.state.selected}/>;
+          var selected=i==this.state.selected?1:0;
+
+          return <ExpeditionRow data={x} key={x.name} selected={selected}/>;
         })}
       </tbody>
     </table>;

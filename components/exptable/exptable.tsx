@@ -76,7 +76,9 @@ export default class ExpeditionTable extends React.Component
 
       <tbody>
         {_.map(this.props.data,(x:ExpeditionData,i:number)=>{
-          return <ExpeditionRow data={x} key={x.name} selected={i==this.state.selected}/>;
+          var selected=i==this.state.selected?2:0;
+
+          return <ExpeditionRow data={x} key={x.name} selected={selected}/>;
         })}
       </tbody>
     </table>;

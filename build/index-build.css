@@ -8,13 +8,16 @@
   background-color: #faf9f9;
   color: #0b0b0b;
 }
-
-.expedition-table {
-  margin-bottom: 40px;
-  border-collapse: collapse;
+.expedition-row.selected.yellow {
+  background-color: #ffeb79;
 }
 
 .current-expeditions {
+  border-collapse: collapse;
+}
+
+.expedition-table {
+  margin-bottom: 40px;
   border-collapse: collapse;
 }
 
