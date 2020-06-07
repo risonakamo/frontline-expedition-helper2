@@ -1,7 +1,7 @@
 import ExpeditionTable from "./components/exptable/exptable";
 import CurrentExpeditions from "./components/currentexp/currentexp";
 
-import store,{toggleTableSelectEnabled} from "./components/thestore/thestore";
+import store,{toggleTableSelectEnabled,toggleCurrentExpSelect} from "./components/thestore/thestore";
 
 import "./index.less";
 
@@ -49,10 +49,16 @@ class IndexMain extends React.Component
     toggleTableSelectEnabled();
   }
 
+  // callback occuring when expedition selected from main table
+  mainTableSelect(selected:string):void
+  {
+    toggleCurrentExpSelect();
+  }
+
   render()
   {
     return <>
-      <ExpeditionTable data={this.state.data}/>
+      <ExpeditionTable data={this.state.data} selected={this.mainTableSelect}/>
       <CurrentExpeditions currentExpeditions={this.state.currentExpeditions} selected={this.currentExpeditionSelect}/>
     </>;
   }

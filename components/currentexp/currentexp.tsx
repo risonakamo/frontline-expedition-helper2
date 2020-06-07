@@ -56,6 +56,7 @@ class CurrentExpeditions extends React.PureComponent
         break;
 
         case "Enter":
+        console.log("trigger");
         this.select();
         break;
       }

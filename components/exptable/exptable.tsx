@@ -1,6 +1,6 @@
 import ExpeditionRow from "../exprow/exprow";
 import {wrapClamp} from "../currentexp/currentexp";
-import {TheStore} from "../thestore/thestore";
+import {TheStore,toggleTableSelectEnabled} from "../thestore/thestore";
 
 import "./exptable.less";
 
@@ -8,6 +8,7 @@ interface ExpeditionTableProps
 {
   data:ExpeditionData[] //all expedition data
   selectEnabled:boolean //STORE
+  selected:(selectedExp:string)=>void //selected expedition callback
 }
 
 interface ExpeditionTableState
@@ -15,7 +16,7 @@ interface ExpeditionTableState
   selected:number //current cursor selected row
 }
 
-/* ExpeditionTable(ExpeditionData[] data, store-bool selectEnabled) */
+/* ExpeditionTable(ExpeditionData[] data, store-bool selectEnabled, function selected) */
 class ExpeditionTable extends React.Component
 {
   props:ExpeditionTableProps
@@ -26,7 +27,7 @@ class ExpeditionTable extends React.Component
     super(props);
 
     this.state={
-      selected:-1
+      selected:0
     };
   }
 
@@ -53,6 +54,11 @@ class ExpeditionTable extends React.Component
         case "ArrowUp":
         this.navigate(-1);
         break;
+
+        case "Enter":
+        console.log("trigger 2");
+        this.select();
+        break;
       }
     });
   }
@@ -63,6 +69,15 @@ class ExpeditionTable extends React.Component
     this.setState({
       selected:wrapClamp(this.state.selected+change,0,this.props.data.length-1)
     });
+  }
+
+  // perform selection on the current highlighted row. disables selection mode
+  // and calls selected callback
+  select():void
+  {
+    this.props.selected(this.props.data[this.state.selected].name);
+
+    toggleTableSelectEnabled();
   }
 
   render()
@@ -83,7 +98,11 @@ class ExpeditionTable extends React.Component
 
       <tbody>
         {_.map(this.props.data,(x:ExpeditionData,i:number)=>{
-          var selected=i==this.state.selected?2:0;
+          var selected=0;
+          if (this.props.selectEnabled && i==this.state.selected)
+          {
+            selected=1;
+          }
 
           return <ExpeditionRow data={x} key={x.name} selected={selected}/>;
         })}
