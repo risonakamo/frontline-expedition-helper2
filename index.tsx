@@ -1,6 +1,8 @@
 import ExpeditionTable from "./components/exptable/exptable";
 import CurrentExpeditions from "./components/currentexp/currentexp";
 
+import store from "./components/thestore/thestore";
+
 import "./index.less";
 
 class IndexMain extends React.Component
@@ -55,11 +57,6 @@ class IndexMain extends React.Component
   }
 }
 
-function main()
-{
-    ReactDOM.render(<IndexMain/>,document.querySelector(".main"));
-}
-
 // get expedition data from data file
 function getExpData():Promise<ExpeditionData[]>
 {
@@ -100,6 +97,12 @@ function fixRawExpeditionData(data:RawExpeditionData[]):ExpeditionData[]
 
         return expdata;
     });
+}
+
+function main()
+{
+    ReactDOM.render(<ReactRedux.Provider store={store}><IndexMain/></ReactRedux.Provider>,
+      document.querySelector(".main"));
 }
 
 window.onload=main;
