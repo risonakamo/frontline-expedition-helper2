@@ -1,21 +1,23 @@
 import ExpeditionRow from "../exprow/exprow";
+import {TheStore,toggleCurrentExpSelect} from "../thestore/thestore";
 
 import "./currentexp.less";
 
 interface CurrentExpeditionsProps
 {
   currentExpeditions:ExpeditionData[] //array of current expeditions, should be 4
+  selectEnabled:boolean //STORE, whether row selection is enabled
   selected:(selectedExpedition:string)=>void //callback called when expedition selected, provides name of selected expedition
 }
 
 interface CurrentExpeditionsState
 {
   selected:number //index of the expedition the cursor is over
-  selectEnabled:boolean //whether row selection is enabled
 }
 
-/* CurrentExpeditions(ExpeditionData[] currentExpeditions, function selected) */
-export default class CurrentExpeditions extends React.PureComponent
+/* CurrentExpeditions(ExpeditionData[] currentExpeditions, store-bool selectEnabled,
+    function selected) */
+class CurrentExpeditions extends React.PureComponent
 {
   props:CurrentExpeditionsProps
   state:CurrentExpeditionsState
@@ -25,8 +27,7 @@ export default class CurrentExpeditions extends React.PureComponent
     super(props);
 
     this.state={
-      selected:0,
-      selectEnabled:true
+      selected:0
     };
   }
 
@@ -39,7 +40,7 @@ export default class CurrentExpeditions extends React.PureComponent
   keyControl():void
   {
     document.addEventListener("keydown",(e:KeyboardEvent)=>{
-      if (!this.state.selectEnabled)
+      if (!this.props.selectEnabled)
       {
         return;
       }
@@ -75,9 +76,9 @@ export default class CurrentExpeditions extends React.PureComponent
   {
     this.props.selected(this.props.currentExpeditions[this.state.selected].name);
 
+    toggleCurrentExpSelect();
     this.setState({
-      selected:-1,
-      selectEnabled:false
+      selected:-1
     });
   }
 
@@ -111,3 +112,9 @@ export function wrapClamp(input:number,min:number,max:number):number
 
   return input;
 }
+
+export default ReactRedux.connect((storestate:TheStore)=>{
+  return {
+    selectEnabled:storestate.currentExpSelectEnabled
+  };
+})(CurrentExpeditions);

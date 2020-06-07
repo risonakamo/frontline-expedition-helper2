@@ -1,21 +1,22 @@
 import ExpeditionRow from "../exprow/exprow";
 import {wrapClamp} from "../currentexp/currentexp";
+import {TheStore} from "../thestore/thestore";
 
 import "./exptable.less";
 
 interface ExpeditionTableProps
 {
   data:ExpeditionData[] //all expedition data
+  selectEnabled:boolean //STORE
 }
 
 interface ExpeditionTableState
 {
   selected:number //current cursor selected row
-  selectEnabled:boolean //in a selection mode
 }
 
-/* ExpeditionTable(ExpeditionData[] data) */
-export default class ExpeditionTable extends React.Component
+/* ExpeditionTable(ExpeditionData[] data, store-bool selectEnabled) */
+class ExpeditionTable extends React.Component
 {
   props:ExpeditionTableProps
   state:ExpeditionTableState
@@ -25,8 +26,7 @@ export default class ExpeditionTable extends React.Component
     super(props);
 
     this.state={
-      selected:-1,
-      selectEnabled:false
+      selected:-1
     };
   }
 
@@ -39,7 +39,7 @@ export default class ExpeditionTable extends React.Component
   keyControl():void
   {
     document.addEventListener("keydown",(e:KeyboardEvent)=>{
-      if (!this.state.selectEnabled)
+      if (!this.props.selectEnabled)
       {
         return;
       }
@@ -91,3 +91,9 @@ export default class ExpeditionTable extends React.Component
     </table>;
   }
 }
+
+export default ReactRedux.connect((storestate:TheStore)=>{
+  return {
+    selectEnabled:storestate.tableSelectEnabled
+  };
+})(ExpeditionTable);
